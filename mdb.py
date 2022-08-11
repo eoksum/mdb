@@ -5,7 +5,7 @@ from pymchat.chat import Chat
 from os import path
 from time import sleep
 
-version = "1.0"
+version = "1.1"
 
 def readFunction(dir):
     if not path.exists(dir):
@@ -54,22 +54,22 @@ def main():
     
     while id < cmdsLen:
         cmd = cmds[id]
-        print("Cursor is currently at command {}".format(id))
-        if id in breakpoints:
+        print("Cursor is currently at command {}".format(id+1))
+        if id+1 in breakpoints:
             isBreakpointHit = 1
             run = 0
-            breakpoints.remove(id)
-            print("Breakpoint hit at command: {}".format(id))
+            breakpoints.remove(id+1)
+            print("Breakpoint hit at command: {}".format(id+1))
         
         if run == 0:
-            print("({}) {}".format(id, cmd))
+            print("({}) {}".format(id+1, cmd))
             icmd = input("(mdb) ")
             inputarg = icmd.split(" ")
             while True:
                 if inputarg[0] == "hop":
                     out = debugger(cmd)
                     if out[0] == 0:
-                        print("Exception detected at command {} !\n\nException is: {}".format(id, out[1]))
+                        print("\nException detected at command {} !\n\nException is: {}".format(id+1, out[1]))
                         run = 0
                     id += 1
                     break
@@ -77,7 +77,7 @@ def main():
                     run = 1
                     out = debugger(cmd)
                     if out[0] == 0:
-                        print("Exception detected at command {} !\n\nException is: {}".format(id, out[1]))
+                        print("\nException detected at command {} !\n\nException is: {}".format(id+1, out[1]))
                         run = 0
                     id += 1
                     break
@@ -87,15 +87,27 @@ def main():
                 elif inputarg[0] == "-break":
                     breakpoints.remove(int(inputarg[1]))
                     break
-                elif inputarg[0] == "goto":
-                    id = int(inputarg[1])
+                elif inputarg[0] == "?break":
+                    bstr = ""
+                    for bp in breakpoints:
+                        bstr = bstr + " " + str(bp)
+                    print("Currently defined breakpoints: " + bstr)
                     break
+                elif inputarg[0] == "goto":
+                    id = int(inputarg[1])-1
+                    break
+                elif inputarg[0] == "quit":
+                    print("Bye!")
+                    exit(1)
                 else:
                     print("Invalid input! Please try again.")
+                    # If user inputs invalid
+                    icmd = input("(mdb) ")
+                    inputarg = icmd.split(" ")
         else:
             out = debugger(cmd)
             if out[0] == 0:
-                print("Exception detected at command {} !\n\nException is: {}".format(id, out[1]))
+                print("\nException detected at command {} !\n\nException is: {}".format(id+1, out[1]))
                 run = 0
             id += 1
         isBreakpointHit = 0
