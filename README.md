@@ -36,9 +36,15 @@ Linux: python3 mdb.py
 *MDB COMMANDS*
 
 hop      - Step 1 command further
+
 +break 2 - Add a breakpoint to line 2
+
 -break 2 - Remove the breakpoint at line 2
+
 ?break   - Display all current breakpoints
+
 run      - Execute the function until it hits a exception
+
 goto 2   - Go to line 2
+
 quit     - Quit mdb
