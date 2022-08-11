@@ -10,6 +10,7 @@ Pymchat - It is used to interact with Minecraft: Java Edition client from Python
 *INSTALLATION STEPS:*
 
 1-) To run mdb, you need to download and install Python 3 first. You can get it from <a href="https://www.python.org/downloads/">here</a>
+
 2-) Once you install Python 3 to your computer, you need to install pymchat. To do that, open up Command Prompt on Windows, Terminal on Linux and type this:
 pip3 install pymchat
 
