@@ -4,6 +4,8 @@ Minecraft Functions Debugger *(mdb)*
 A tool which is for debugging Minecraft datapack functions in Minecraft: Java Edition. It is tested on version 1.19 successfully and probably be fully compatible with the upcoming releases.
 I've developed this tool because there were no easy way to debug which command is failing in a .mcfunction file. This tool loads MCFUNCTION files and can execute commands one-by-one, letting you know which command fails. It is very useful if you're dealing with a function file that has 25000 Minecraft commands in it.
 
+Introduction video: https://youtu.be/-y9KI2RAVF8
+
 Dependencies:
 Pymchat - It is used to interact with Minecraft: Java Edition client from Python backend.
 
